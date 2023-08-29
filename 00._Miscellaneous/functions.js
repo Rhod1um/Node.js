@@ -59,3 +59,6 @@ function run(name){ //samme med named funktion
 
 //gøres på en enkelt linje:
 console.log(genericActionperformer((name)=>`${name} is sleeping`, "Daniel"))
+//genericActionperformer(funktion, name), funktion: (name)=>`${name} is sleeping`, name: "Daniel"
+//polymorfisk, vi får handlinger dynamisk
+//giver rigtig mange muligheder
