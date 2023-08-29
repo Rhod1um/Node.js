@@ -11,6 +11,8 @@ const lastName = "Latif";
 console.log(`My first name is ${firstName} and my last name is ${lastName} `)
 //eller
 console.log("My first name is", firstName, "and my last name is", lastName)
+//^ '' og "" er milisekunder hurtigere end `` og det betyder noget i dette kursus
+//så brug '' og "" og kun ``når nødvendigt? 
 
 // --------------------------------------
 // Exercise 2 - Numbers and Strings
