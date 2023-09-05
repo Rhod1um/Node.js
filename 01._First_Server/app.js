@@ -75,7 +75,8 @@ app.get("/wallet/:withdrawalAmount", (req, res) => {
         res.send({message: `you've withdrawn ${withdrawn}`})
     }
 })
-
+//{mountains} i curly brackets for at være valid json, inde i yderste curly brackets er liste af strings
+//hvor bjerg er key og liste med bjerge er value
 
 
 app.listen(8080)
