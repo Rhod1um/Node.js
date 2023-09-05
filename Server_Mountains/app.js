@@ -17,7 +17,7 @@ app.get("/mountains", (req, res) =>{
 
 
 app.get("/mountains/:id", (req, res) => {
-    let id = parseInt(req.params.id)
+    const id = parseInt(req.params.id)
     /*
     første uoptimerede løsning:
     for (const mountain of mountains){

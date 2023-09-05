@@ -5,6 +5,9 @@ console.log(2+2)
 //loop funktioner, *funktioner* her
 //forEach, map, filter, find, sort, reduce
 
+//vi bruger ikke reduce her. brug næsten altid map
+//der skal være rigtig god årsag til at bruge forEach
+
 //hvorfor bruger vi funktionel programmering:
 //currying: er teknik i funktionel programmering:
 //nested functions hvor hver funktion tager en parameter frem for en

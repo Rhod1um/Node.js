@@ -6,6 +6,13 @@ const express = require("express")
 
 const app = express() //instantiere express
 
+app.use(express.json())
+//gør at ser den json så parser det den selv ved POST. Den parser så selv body
+//den kunne ikke poste i postman før dette, men nu kan den
+//hvis man ikke har denne linje så mangler den body parser og hvad den får in er undefined
+//.send() i en get laver selv json og js om hver vej, men ved POST skal man 
+//bruge body parser
+
 //const app = require("express")() //gøres i enkel linje, men gøres ikke fremover
 //årsag ses senere
 
@@ -78,5 +85,22 @@ app.get("/wallet/:withdrawalAmount", (req, res) => {
 //{mountains} i curly brackets for at være valid json, inde i yderste curly brackets er liste af strings
 //hvor bjerg er key og liste med bjerge er value
 
+
+//ny, cat
+//POST
+//http://localhost:8080/cat?name=Napster&age=2.5
+//http://localhost:8080/cat?name=Fibio&type=skodkat
+
+app.get("/cat", (req, res) => {
+    console.log(req.query) 
+    res.send( {data: req.query} )
+})
+//req.query er et objekt, har key value pair
+
+app.post("/giveMeTheBody", (req, res) => {
+    console.log(req.body)
+    res.send(req.body) //sender det man postede tilbage 
+})
+//det er express der gør at vi skriver http metoder sådan her lige her
 
 app.listen(8080)

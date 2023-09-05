@@ -1,0 +1,20 @@
+
+jdbc:// også protokol
+protocol     (root)domæne endpoint query-string
+https://www.google.com/search?hl=en&q=test
+        subdomæne  top-level domæne
+
+?hl=en&q=test  er query string, alt fter ? er query string og kan kun være query string,
+ kan ikke være path variabel
+ query string er key value pair af query parameters adsklt af &
+
+/search/1     path variable
+
+man kan kun sende data i en get request på denne måde, path variabel eller query string
+
+alt i browser adresse baren er altid en get metode
+
+for post skal vi bruge postman eller js 
+insomnia er alernativ til postmen men postman er bedre
+
+når vi poster så er vi client i postman og server her i node
