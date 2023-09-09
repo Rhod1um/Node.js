@@ -1,0 +1,8 @@
+Mountains CRUD api
+
+GET     /mountains
+GET     /mountains/{id}
+POST    /mountains
+PUT     /mountains/{id}
+PATCH   /mountains/{id}
+DELETE  /mountains/{id}
