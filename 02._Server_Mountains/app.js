@@ -180,3 +180,6 @@ app.listen(PORT, (error) => {
     }
     console.log("Server is running on port", PORT)
 })
+
+// Export the Express API
+module.exports = app;
