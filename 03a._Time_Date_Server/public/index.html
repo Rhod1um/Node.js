@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Time API</title> <!---husk title-->
 </head>
 <body>
 
@@ -12,7 +12,7 @@
     <h3>Hentet fra backend: <span id="data"></span></h3>
 
     <script>
-        fetch("/").then((response) => response.json).then((result => {
+        fetch("/").then((response) => response.json()).then((result => {
             const data = document.getElementById("data")
             data.innerText = result.data  //vi bruger innerText, for innerHTML der skal man indsætte 
             //et HTML element. innerText indsætter bare text
