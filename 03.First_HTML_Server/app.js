@@ -19,6 +19,25 @@ app.get("/secondPage", (req, res) => {
     res.sendFile(__dirname + "/public/secondPage.html")
 })
 
+//========================
+//fetch
+
+app.get("/welcomeMessage", (req, res) => {
+    const clientName = req.query.user
+
+    if(! clientName) { //man skal have ! som første option, security principle, defaulter på NOT
+        //principle of least privileged, fault tolerance, fail-safe default - sidste er navnet på det
+        //18 principper cyber securtiry everybody must follow
+        res.send({ message: "hello stranger"})
+    } else {
+        res.send({ message: `welcome to my fancy website, ${clientName}`})
+    }
+
+    //res.send({ message: "welcome to my fancy website"})
+})
+
+//=========================
+
 
 const PORT = 8080
 app.listen(PORT, (error) => {

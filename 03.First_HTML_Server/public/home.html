@@ -4,9 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First HTML server</title>
+    <!--<link rel="stylesheet" href="mystyle.css" -->
+    <style> /*inline er bedre end at have blok som her, men seperat fil er self bedst
+    til mandatory 1: man skal selv komme ind på ting man har lært, fx det her med css*/
+        h1 {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <h1 style="background-color: #344556;">Home</h1>
+    <h1>Home</h1>
     
+    <h3>This is now deployed</h3>
+    <h3 id="welcomeMessage"></h3>
+
+    <a href="/secondPage">Second page</a>
+
+
+    <script>
+        //inline scripting
+        console.log("hello") //logges til browser console
+        //det samme som vi gjorde sidste semester, ala hvor js fil blev inkluderet i html
+        //sidst gjorde vi sådan fordi js var frontend, client
+        //nu har vi js som server, backend, derfor kan vi ikke poste til browser fra der
+
+        setTimeout(() => {
+            console.log("hello")
+        }, 1000)
+        //vercel skal have ting inline fordi det er serverless
+        //inline scripting er ok nu, men ikke i næste uge/fremover
+
+        //fetch welcomeMessage and show it in console.log
+        //anders bruger ikke async, await men bare then
+        //det er fordi så SKAL det ind i funktioner men det gider vi ikke for noget der bare skal
+        //køre en enkelt gang, samt async await er langt langt langsommere, næsten helt sekund
+        const url = "http://localhost:8080/welcomeMessage"
+
+        fetch(url).then((response) => {
+            console.log(response);
+            response.json().then((data) => {
+            console.log(data);
+            });
+        });
+
+        fetch("/welcomeMessage?user=V")
+        .then((response) => response.json())
+        .then((result) => {
+            const welcomeMessageHeader = document.getElementById("welcomeMessage")
+            welcomeMessageHeader.innerText = result.message
+            console.log(result)
+        })
+        //sidste funktion har adgang til repsonse pga closure
+        //nu bruger vi elementById fordi den traverser ét tre, mens query selector traverser 4 træer
+
+        //man kan skrive fetch("/welcomemessage") i browser konsol og så får man promise
+        //dette returnerer data med .then:
+        //fetch("/welcomemessage").then(console.log)
+        //hvorfor then med fetch:
+        //foregår over et netværk så man ved ikke hvornår det sker
+        //reposnse vi får: bytestream, sker måske over flere packets, readable stream er js bytestream
+        //se i objektet, står bytestream, det er ikke json, men vi vil konvertere det til json
+        //konvertere til json: fetch("/welcomemessage").then(response => response.json())
+        //får også promise fordi det tager tid at konvertere til json
+
+
+    </script>
 </body>
 </html>

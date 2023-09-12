@@ -1,20 +1,33 @@
 //imports
-const express = require("express")
+const express = require("express") //hvorfor skal det være commonJS standard og ikke ES?
 const app = express()
 
 app.use(express.json())
 
-let mountains = [
-    { id: 1, name: "Mauna Kea volcano" },
-    { id: 2, name: "Roraima" },
-    { id: 3, name: "Kilimanjaro" },
-    { id: 4, name: "Hvannadalshnúkur" },
-    { id: 5, name: "Himmelbjerget" },
-    { id: 6, name: "Hoverla" },
-    { id: 7, name: "nyt bjerg" }
-]
+//optimeret løsning, nu med klasse:
+class Mountain {
+    static idCounter = 1
+    constructor(id, name, height) {
+        this.id = Mountain.idCounter++
+        this.name = name
+        this.height = height
+    }
+}
 
-let count = mountains.length
+let mountains = [
+    new Mountain(1, "Mauna Kea volcano", 4207),
+    new Mountain(2, "Roraima", 2810),
+    new Mountain(3, "Kilimanjaro", 5895),
+    new Mountain(4, "Hvannadalshnúkur", 2110),
+    new Mountain(5, "Himmelbjerget", 147),
+    new Mountain(6, "Hoverla", 2061),
+    new Mountain(7, "Nyt bjerg", 888)
+];
+/*
+hvordan det blev gjort uden Mountain class, men med simple objekter:
+
+let count = mountains.length  //længde er dårlig, vi har en delete så nogle får samme id
+mysql har "next id" som forhindre ovenstående? 
 
 function addMountain(body) {
     count++
@@ -22,7 +35,7 @@ function addMountain(body) {
     console.log(newMountain)
     mountains.push(newMountain)
     return newMountain
-}
+}*/
 
 app.get("/", (req, res) => {
     res.send('Mountains API')
@@ -56,10 +69,18 @@ app.get("/mountains/:id", (req, res) => {
     //res.send(mountains.find(mountain => mountain.id === id))
 
     const mountainId = Number(req.params.id)
-    if (!mountainId) {
-        res.send({ error: "mountain id must be a number" })
-    } else {
-        const foundMountain = mountains.find((mountain) => mountain.id === mountainId)
+
+    if (isNaN(mountainId) || mountainId <= 0) {
+        res.send({ error: "Mountain id must be a positive number" });
+        return //exiter funktionen her så nedenstående ikke køres unødvendigt
+    } 
+    //gøres her så at der ikke loopes unødvendigt hvis id i url er forkert alligevel:
+    const foundMountain = mountains.find((mountain) => mountain.id === mountainId)
+
+    if (! foundMountain) {
+        res.send({ error: "Mountain not found" })
+    }
+    else {
         res.send({ data: foundMountain })
     }
 })
@@ -73,7 +94,7 @@ app.post("/mountains", (req, res) => {
         res.send({ error: "The mountain should only have a name attribute" })
     } else {
         const mountain = addMountain(req.body)
-        res.send(mountain)
+        res.send({data: mountain})  //husk send som json!!! så kan alle læse det. Ellers er det js objekt
     }
 })
 
