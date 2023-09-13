@@ -11,11 +11,12 @@
     
     <h3>Hentet fra backend: <span id="data"></span></h3>
 
+    <a href="/secondPage">Second page</a>
+
     <script>
-        fetch("/").then((response) => response.json()).then((result => {
+        fetch("/data").then((response) => response.json()).then((result => {
             const data = document.getElementById("data")
-            data.innerText = result.data  //vi bruger innerText, for innerHTML der skal man indsætte 
-            //et HTML element. innerText indsætter bare text
+            data.innerText = result.data 
         }))
 
     </script>

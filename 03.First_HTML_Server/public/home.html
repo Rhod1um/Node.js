@@ -38,22 +38,23 @@
         //anders bruger ikke async, await men bare then
         //det er fordi så SKAL det ind i funktioner men det gider vi ikke for noget der bare skal
         //køre en enkelt gang, samt async await er langt langt langsommere, næsten helt sekund
-        const url = "http://localhost:8080/welcomeMessage"
+        const url = "http://localhost:8080/welcomeMessage" //hele url bruges åbenbart ikke
 
-        fetch(url).then((response) => {
+        fetch(url).then((response) => {  //generel fetch
             console.log(response);
             response.json().then((data) => {
             console.log(data);
             });
-        });
+        }); //copy paste det her i browser console, det er det samme der sker som her inde
 
         fetch("/welcomeMessage?user=V")
         .then((response) => response.json())
         .then((result) => {
             const welcomeMessageHeader = document.getElementById("welcomeMessage")
-            welcomeMessageHeader.innerText = result.message
+            welcomeMessageHeader.innerText = result.message //message property i json
+            //får { message: `welcome to my fancy website, ${clientName}`} fra backend
             console.log(result)
-        })
+        }) //copy paste det her i browser console, det er det samme der sker som her inde
         //sidste funktion har adgang til repsonse pga closure
         //nu bruger vi elementById fordi den traverser ét tre, mens query selector traverser 4 træer
 
