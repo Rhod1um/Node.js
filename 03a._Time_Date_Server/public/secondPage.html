@@ -17,12 +17,17 @@
     </div>
 
     <script>
-        fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY").
+        fetch("https://api.nasa.gov/planetary/apod?api_key=5r1MmtKEtSLh1uMcoiFwut1TfOnmGXfCnq2FTDJv").
             then((response) => response.json()).then((result) => {
+
+                const apodDate = new Date(result.date)
+                apodDateLocal = apodDate.toLocaleDateString('en-GB').toString().replaceAll("/", "-")
+                //her får vi europæisk engelsk format, gør den til string så vi kan ændre / til -
+
                 document.getElementById("apod-title").innerText = result.title
                 document.getElementById("apod").src = result.url
                 document.getElementById("copyright").innerText = result.copyright
-                document.getElementById("apod-date").innerText = result.date
+                document.getElementById("apod-date").innerText = apodDateLocal
             })
     </script>
 </body>

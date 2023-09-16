@@ -13,7 +13,7 @@
 
     <!--<h3>Hentet fra backend: <span id="data"></span></h3>-->
 
-    <a href="/secondPage" style="padding: 10px; border: 1px solid;   border-radius: 5px;">Astronomy picture of the day</a>
+    <a href="/secondPage" style="font-size: 22px; padding: 10px; border: 1px solid; border-radius: 5px;">Astronomy picture of the day</a>
 
     <div style="display:flex; margin: 50px">
 
@@ -39,7 +39,7 @@
                 document.getElementById("forecast").innerHTML = result //innerHTML fordi den sender html
             })
 
-        fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY").
+        fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=5r1MmtKEtSLh1uMcoiFwut1TfOnmGXfCnq2FTDJv").
             then((response) => response.json()).then((result) => {
                 document.getElementById("mars-rover-photo-fetch").src = result.photos[3].img_src
             })
