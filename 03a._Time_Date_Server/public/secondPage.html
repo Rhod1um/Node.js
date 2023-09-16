@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>secondPage</title>
+    <title>Astronomy Picture of the Day</title>
 </head>
-<body>
+<body style="text-align: center; margin: 50px">
 
-    <h3>This is now deployed</h3>
-    <h3 id="welcomeMessage"></h3>
+    <h1>Astronomy Picture of the Day</h1>
+    <h3 id="apod-title"></h3>
+
+    <div>
+        <img id="apod" src="" alt="Astronomy picture of the day" width="650px">
+        <h4 id="copyright"></h4>
+        <h5 id="apod-date"></h5>
+    </div>
 
     <script>
-        fetch("/welcomeMessage?user=V")
-        .then((response) => response.json())
-        .then((result) => {
-            const welcomeMessageHeader = document.getElementById("welcomeMessage")
-            welcomeMessageHeader.innerText = result.message //message property i json
-            //får { message: `welcome to my fancy website, ${clientName}`} fra backend
-            console.log(result)
-        })
+        fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY").
+            then((response) => response.json()).then((result) => {
+                document.getElementById("apod-title").innerText = result.title
+                document.getElementById("apod").src = result.url
+                document.getElementById("copyright").innerText = result.copyright
+                document.getElementById("apod-date").innerText = result.date
+            })
     </script>
 </body>
 </html>

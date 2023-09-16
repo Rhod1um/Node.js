@@ -23,14 +23,14 @@ app.get("/secondPage", (req, res) => {
 //fetch
 
 app.get("/welcomeMessage", (req, res) => {
-    const clientName = req.query.user
+    const clientName = req.query.user //her fås query string ?user=V fra clienten/frontend
 
     if(! clientName) { //man skal have ! som første option, security principle, defaulter på NOT
         //principle of least privileged, fault tolerance, fail-safe default - sidste er navnet på det
         //18 principper cyber securtiry everybody must follow
-        res.send({ message: "hello stranger"})
+        res.send({ message: "hello stranger" })
     } else {
-        res.send({ message: `welcome to my fancy website, ${clientName}`})
+        res.send({ message: `welcome to my fancy website, ${clientName}` })
     }
 
     //res.send({ message: "welcome to my fancy website"})

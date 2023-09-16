@@ -1,25 +1,51 @@
 <!DOCTYPE html> <!---husk ! for at autogenerer html boilerplate kode-->
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time API</title> <!---husk title-->
+    <title>Mars Weather</title> <!---husk title-->
 </head>
-<body>
 
-    <h1>Time assignment</h1>
-    
-    <h3>Hentet fra backend: <span id="data"></span></h3>
+<body style="text-align: center">
 
-    <a href="/secondPage">Second page</a>
+    <h1 style="margin-top: 90px; margin-bottom: 60px; font-size:50px">Mars Weather Forecast</h1>
+
+    <!--<h3>Hentet fra backend: <span id="data"></span></h3>-->
+
+    <a href="/secondPage" style="padding: 10px; border: 1px solid;   border-radius: 5px;">Astronomy picture of the day</a>
+
+    <div style="display:flex; margin: 50px">
+
+        <div style="margin-top:90px;">
+            <img id="mars-rover-photo"
+                src="https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/pia22486-main.jpg"
+                alt="mars rover photo" width="650">
+            <img id="mars-rover-photo-fetch" src="" alt="Mars rover photo" width="650" style="margin-top: 40px">
+        </div>
+
+        <div id="forecast"></div>
+
+    </div>
 
     <script>
-        fetch("/data").then((response) => response.json()).then((result => {
+        /*fetch("/data").then((response) => response.json()).then((result => {
             const data = document.getElementById("data")
-            data.innerText = result.data 
-        }))
+            data.innerText = result.data
+        }))*/
+
+        fetch("https://wttr.in/~Vostok+Station?FQTn").then((response) => response.text()) //wttr sender html/tekst, ikke json
+            .then((result) => {
+                document.getElementById("forecast").innerHTML = result //innerHTML fordi den sender html
+            })
+
+        fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=DEMO_KEY").
+            then((response) => response.json()).then((result) => {
+                document.getElementById("mars-rover-photo-fetch").src = result.photos[3].img_src
+            })
 
     </script>
 
 </body>
+
 </html>
