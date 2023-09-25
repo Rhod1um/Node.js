@@ -9,7 +9,7 @@
 
 <body style="text-align: center">
 
-    <h1 style="margin-top: 90px; margin-bottom: 60px; font-size:50px">Mars Weather Forecast</h1>
+    <h1 style="margin-top: 90px; margin-bottom: 60px; font-size:50px">Mars Weatherrr Forecast</h1>
 
     <!--<h3>Hentet fra backend: <span id="data"></span></h3>-->
 
@@ -36,13 +36,7 @@
 
         fetch("https://wttr.in/~Vostok+Station?FQTn").then((response) => response.text()) //wttr sender html/tekst, ikke json
             .then((result) => {
-                const forecast = document.getElementById("forecast")
-                result_style_removed = result
-                    .split('\n') // Split the HTML into lines
-                    .filter((line) => !line.includes("stylesheet")) // Remove lines containing "cloudy"
-                    .join('\n'); // Join the remaining lines back into a single string
-
-                forecast.innerHTML = result_style_removed //innerHTML fordi den sender html
+                document.getElementById("forecast").innerHTML = result //innerHTML fordi den sender html
             })
 
         fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=5r1MmtKEtSLh1uMcoiFwut1TfOnmGXfCnq2FTDJv").

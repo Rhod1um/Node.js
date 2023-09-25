@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First HTML server</title>
-    <!--<link rel="stylesheet" href="mystyle.css" -->
-    <style> /*inline er bedre end at have blok som her, men seperat fil er self bedst
+    <link rel="stylesheet" href="home.css">
+    <!--inline er bedre end at have blok som her, men seperat fil er self bedst
     til mandatory 1: man skal selv komme ind på ting man har lært, fx det her med css*/
         h1 {
             color: red;
         }
-    </style>
+    </style>-->
 </head>
 <body>
     <h1>Home</h1>
@@ -21,7 +21,8 @@
     <a href="/secondPage">Second page</a>
 
 
-    <script>
+    <script src="home.js">
+    /*
         //inline scripting
         console.log("hello") //logges til browser console
         //det samme som vi gjorde sidste semester, ala hvor js fil blev inkluderet i html
@@ -67,8 +68,7 @@
         //se i objektet, står bytestream, det er ikke json, men vi vil konvertere det til json
         //konvertere til json: fetch("/welcomemessage").then(response => response.json())
         //får også promise fordi det tager tid at konvertere til json
-
-
+        */
     </script>
 </body>
 </html>
