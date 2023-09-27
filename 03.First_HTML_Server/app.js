@@ -2,7 +2,7 @@ const express = require("express") //importere expresss
 
 const app = express() //instantiere express
 
-const welcomeMessageUtil = require("./util/welcomeMessageUtil.js")
+const { getWelcomeMessage } = require("./util/welcomeMessageUtil.js");
 //fil, ikke pakke, derfor path
 //med require kan man undgå .js til sidst, vscode autocompleter med js, antager det er js
 //hvis det ikke er js vil den lede efter json. Men skriv stadig hele navnet anbefaler anders
@@ -43,21 +43,50 @@ app.get("/secondPage", (req, res) => {
 //========================
 //fetch
 
+//det var denne der ikke virkede sidste gang
+
 app.get("/welcomeMessage", (req, res) => {
-    const clientName = req.query.user //her fås query string ?user=V fra clienten/frontend
-    const welcomeMessage = welcomeMessageUtil.getWelcomeMessage()
+    //her fås query string ?user=V fra clienten/frontend
+    const clientName = req.query.user;
+    const welcomeMessage = getWelcomeMessage(clientName);
     res.send({ data: welcomeMessage })
-
-    //res.send({ message: "welcome to my fancy website"})*/
-
-})
+});
 
 //=========================
 
+//nu med server side redicetion
+
+app.get("/doorman/:key", (req, res) => {
+    if (req.params.key === "sesameopenup") {
+        return res.redirect({ data: "correct key" })
+    }
+    res.send({ data: "not correct key" })
+    //cannot set headers after they are sent to the client
+    //sker fordi res.send sker efter det første res.send er gjort
+    //hvis der stod return i øverste ville return stoppe funktionen
+    //uden return vil koden køre videre og vil prøve at sende nr. 2 res.send
+    //det er smart at bruge return specielt ved nestede if og databaser
+    //vær konsistent og bare altid brug return
+    //den siger noget med header fordi headerne er sat i første og kan ikke gøres igen
+    //client-server mode, server kan kun give ét response
+})
+
+app.get("/proxyserver", (req, res) => {
+    // task: request http://www.google.com
+    //proxy server, redirecter til anden side og kaster response tilbage?
+    //kan være ulovligt 
+    //man kan fetche i front og backend, forskelligt, i backend er server client til anden server
+    //chain af client server
+    fetch("http://www.google.com")
+        .then((response) => response.text())  //giver html, derfor text
+        .then((result) => {
+            res.send(result)
+        })
+})
 
 const PORT = 8080
 app.listen(PORT, (error) => {
-    if(error){
+    if (error) {
         console.log("failed", error)
     } else {
         console.log("server is running on ", PORT)

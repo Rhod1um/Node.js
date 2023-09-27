@@ -1,0 +1,84 @@
+00._Miscellaneous
+    01._Intro_Exercises
+        01.Basics.js
+            Strings header
+                string literal, template string
+                string concatenation
+                console.log, variadic function, output strings
+            Typecasting header, streng til int
+                sætte + foran streng konverterer det til nummer
+                parseInt()
+        02.Strings.js
+            streng til float
+            parseFloat()
+            .toFixed(2) decimaler til 2
+            strengemetoder
+            charAt(2) = letters[2] //brug bracket notation frem for dot notation
+            capitalize in js, replace()
+            forskel på json og js: json skal have key i "", skal js ikke/behøver ikke
+        03.Objects.js
+            Objekt header
+                js objekt udseende, key value (sammenlign med json jer?)
+                add property
+                remove property
+        04.Arrays.js (og for loops)
+            array opsætning
+            find() metode, find er callback (nej find kan tage callback?). Arrow vs normal funktion
+            push til array
+            indexOf() - tager enkelt værdi
+            findIndex() (kun string har .charAt og .at), findIndex kan tage callback 
+            splice(), indsæt ting mellem eksisterende ting
+            array.pop(), fjern sidste element
+            map, copy array
+            normal for loop
+            for of loop, looper array
+            AND && OR  || operaturer, og NOT !
+    debug.js
+        'use strict' - laver silent errors til throw errors
+        eval() - må ikke bruges, XXS
+        public variabel
+        forskel på var, const og let
+        hvad er identifier, console er? kan ikke reassigne identifiers fx console = noget
+        delete - kan ikke gøres på identifier (og private properties) - skal ikke med
+    functions.js
+        console.log() variadic function
+        Math.floor, random
+        normal, anonym, arrow funktion, forskelle
+        hoisting - funktioner og variabler er øverst altid, er i callstack, parses før filen læses
+            ^âmbiguous term, referer mdn 
+            ^ kan bruge funktioner før de er skrevet, kan også bruge variabler men giver undefined
+        callstack
+        funktionsreference?
+        ASI - automatic emo-colon insertion
+    loops.js
+        loop funktioner eksempler: forEach, map, filter, splice, find, sort, reduce
+        currying: i funktionel programmering, nested funktioner hvor hver funktion tager en parameter frem for funktion som tager flere parametre
+        brug stort set altid map, lav ny array for at undgå code side effects, code smell
+        bedste opslagsværk for js er mdn
+        fulde funktionelle programmeringssprog fx haskell har ingen side effects
+        js kan begge paradigmer, OOP og funktionel. Er inspieret af Lisp
+        skal funktion returnere objekt hav () om objektet ellers ses {} som funktionskald
+        pæn kode: gode navne
+        brug altid ny array fordi har array'en referencer overføre ændringer i ny array til gammel så det er uforudsigeligt hvordan gammel array påvirkes. Man tror den er som den gamle men propertie opdateres
+    package_managers.txt
+        eksempler på flere sprogs package managers, sammenligning npm og maven
+    variables_I.js
+        koderegler:
+        lav alle variabler const fra start
+        console.log, comma giver ekstra mellemrum, definere usynlige regler for koden
+        vi bruger ikke + i console.log for at undgå type coersion. concatinere ikke
+        eksempel på type coersion
+        datatyper
+        string eksempler '' "" ``
+    variables_II.js
+        "use strict", lidt mere forklaring
+        aldrig brug global variabel
+        function scope, block scope
+        hver scope har sin egen call stack og executable context
+        hvorfor vi ikke bruger var, flyder ud af block scope
+        typisk interview spørgsmål med var
+        const er ikke en konstant, er ikke immutable, mere info om const, let og var
+
+
+
+

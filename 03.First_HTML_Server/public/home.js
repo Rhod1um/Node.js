@@ -43,3 +43,10 @@ fetch("/welcomeMessage?user=V")
 //se i objektet, står bytestream, det er ikke json, men vi vil konvertere det til json
 //konvertere til json: fetch("/welcomemessage").then(response => response.json())
 //får også promise fordi det tager tid at konvertere til json
+
+fetch("/welcomeMessage?user=V")
+.then((response) => response.json())
+.then((result) => {
+    const welcomeMessageHeader = document.getElementById("welcomeMessage");
+    welcomeMessageHeader.innerText = result.data;
+});

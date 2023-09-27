@@ -43,7 +43,7 @@ for (var i=0; i<= 5; i++){
 //det er fordi var er global scope, gøres det til let er det 0-5
 
 //const er ikke en konstant, kan ikke ændre værdi i memory, kan ikke redeclare
-//er ikke emutable i forhold til værdien
+//er ikke immutable i forhold til værdien
 
 //const isThisConstant, kan ikke gøres, skal initialiseres
 //isThisConstant = 79 //kan ikke redeklares

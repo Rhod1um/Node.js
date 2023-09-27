@@ -1,0 +1,28 @@
+Hvad skal siden indeholde som jeg vil vise til en praktikvirksomhed:
+
+Strings: string literal, string concatenation, template string, string methods, eksmepel på type coersion med +
+charAt(2) = letters[2] //brug bracket notation frem for dot notation
+
+Typecasting?
+
+objekter, add remove property, sammenlign json, sammenlign xml
+
+binary (?) operators AND && OR  || operaturer, og NOT !
+
+array, metoder, hvorfor lave ny array, map, code side effects. ikke brug normale for loops
+
+use strict
+
+forskel på var const og let
+
+normal, anonym, arrow funktion, forskelle, callback
+
+hoisting, callstack
+
+loop metoder, hvorfor map, code side effects, code smell
+
+projekt opsætning, npm - package.json (som mavens pom.xml)
+
+clean code, gode navne, lav ny array, aldrig lav global variabel
+
+datatyper

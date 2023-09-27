@@ -4,7 +4,7 @@ const scheduledBreakTime = "09:27"
 let consoleLogCounter = 0
 
 console.log("Let's take a break at : ", scheduledBreakTime)
-//den outputter "at   :   09:27" fordi komma bruges^ frem for + ved concatinering
+//den outputter "at  :   09:27" fordi komma bruges^ frem for + ved concatinering
 //dvs vi har defineret usynlige regler for mig selv, brug komma i conole log
 //vi bruger , og ikke + for at undgå type coersion
 

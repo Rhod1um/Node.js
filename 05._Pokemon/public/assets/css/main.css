@@ -1,0 +1,13 @@
+#logo {
+    width: 10vw;
+}
+/*vi vil gøre at footer er nederst uanset content amount*/
+body {
+    min-height: 95vh;  /**/
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;  /**/
+}

@@ -44,7 +44,7 @@ console.log(genericActionperformer(jump, "Lasse"))
 
 //ASI - automatic emo-colon insertion, så Anders er ligeglad med om man bruger semi-kolon
 //Bare vær konsistent 
-//Ader bruge semikolon fordi det er pædagosksik at man kan se hvad der er statement og hvad der ikke er
+//Anders bruger semikolon fordi det er pædagoisk at man kan se hvad der er statement og hvad der ikke er
 
 //const run = function(name) {return `${name} is running`} samme men anonym
 //desired result: Jonathan is running

@@ -17,8 +17,6 @@ app.get("/secondPage", (req, res) => {
 })
 
 
-
-
 const PORT = 8080
 app.listen(PORT, (error) => {
     if(error){

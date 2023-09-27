@@ -1,0 +1,6 @@
+forklar
+
+/datatyper:
+//Number, String, Boolean, BigInteger, undefined, null, Object, Symbol
+//Object: Object, Array, Date
+//Funktion er en datakonstrukt ifølge anders
