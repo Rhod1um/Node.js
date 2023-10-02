@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <title>Vercel deployment</title>
+</head>
+<body>
+    <h1>Deployment on Vercel</h1>
+        <p>In the bottom of the app's .js file export it in the commonJS format.</p>
+        <pre>
+            <code>module.exports = app</code>
+        </pre>
+        <p>create a file vercel.json in the root of the project folder.</p>
+        <p>Copy/paste this code and specify the version of vercel and your app's main .js file, here we use app.js, in the json.</p>
+        <pre>
+            <code>
+                {
+                    "version": 2,
+                    "builds": [
+                      {
+                        "src": "app.js",
+                        "use": "@now/node"
+                      }
+                    ],
+                    "routes": [
+                      {
+                        "src": "/(.*)",
+                        "dest": "app.js"
+                      }
+                    ]
+                  }
+            </code>
+        </pre>
+        <p>Push your app to your repository.</p>
+        <p>Log in to vercel using your Github, Gitlab, or Gibucket account.</p>
+        <p>Upload your project, specify its root folder, and deploy.</p>
+        <p>If you push your changes but don't see them updated it can because your browser caches the old version.</p>
+
+</body>
+</html>

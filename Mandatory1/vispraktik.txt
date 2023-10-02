@@ -3,7 +3,7 @@ Hvad skal siden indeholde som jeg vil vise til en praktikvirksomhed:
 Strings: string literal, string concatenation, template string, string methods, eksmepel på type coersion med +
 charAt(2) = letters[2] //brug bracket notation frem for dot notation
 
-Typecasting?
+Typecasting? Number() gør det samme som parssInt()
 
 objekter, add remove property, sammenlign json, sammenlign xml
 
@@ -23,6 +23,31 @@ loop metoder, hvorfor map, code side effects, code smell
 
 projekt opsætning, npm - package.json (som mavens pom.xml)
 
-clean code, gode navne, lav ny array, aldrig lav global variabel
+clean code, gode navne, lav ny array, aldrig lav global variabel, brug return i routes undgår header already sat
+brug then frem for async/await da async/await er langsom, næsten et sekund. Brug getElementById frem for query selector da elementById un traverser ét tre, query selector traverser 4
 
 datatyper
+
+anatomy of an url
+
+anatomy of express server, forklaring af opsætning både i projektmappe med node_modules osv samt inde i app
+vis hans mountain server som eksempel?
+security principle of least privileged
+måder at importere express
+
+rest api design, http metoder rækkefølge og hvorfor (så ved man de altid er sådan, er hurtig at finde i dokumentation), og navngivning - mappes til db og er flertal (fordi flertal i db)
+- hvornår id i url. Forklaring af de forskellige, fx put vs patch, idempotence
+ingen standarder for hvad delete sender tilbage, sender bare id, mountain eksempel ( i endnu server)
+
+spread operator, mountain patch eksempel (i endnu server), også med at json overskriver gentagne properties
+
+falsy: false, 0, undefined, NaN, null, ""
+udvidet port som eksempel, om error er undefined
+
+typer af imports, commonJS vs ESM
+
+fetch forklaret i detaljer
+
+dato-formater
+
+vis at man fetcher fra api, fx pokeapi eler mars? både vis kode og selve det der fetches?

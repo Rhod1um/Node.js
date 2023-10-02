@@ -9,7 +9,7 @@
                 sætte + foran streng konverterer det til nummer
                 parseInt()
         02.Strings.js
-            streng til float
+            streng til floatF
             parseFloat()
             .toFixed(2) decimaler til 2
             strengemetoder
@@ -53,7 +53,7 @@
     loops.js
         loop funktioner eksempler: forEach, map, filter, splice, find, sort, reduce
         currying: i funktionel programmering, nested funktioner hvor hver funktion tager en parameter frem for funktion som tager flere parametre
-        brug stort set altid map, lav ny array for at undgå code side effects, code smell
+        brug stort set altid map, lav ny array for at undgå code side effects, code smell. Gammel array garbage collectes
         bedste opslagsværk for js er mdn
         fulde funktionelle programmeringssprog fx haskell har ingen side effects
         js kan begge paradigmer, OOP og funktionel. Er inspieret af Lisp
@@ -78,7 +78,178 @@
         hvorfor vi ikke bruger var, flyder ud af block scope
         typisk interview spørgsmål med var
         const er ikke en konstant, er ikke immutable, mere info om const, let og var
-
-
-
+01._First_Server
+    node_modules - viser at express er installeret og gør at det virker ens på forskellige computere
+    anatomy_of_an_url.txt
+        url og get request forklaring, postman, client-server
+    app.js
+        installation af express, forskellige måder at sætte det op (npm init vs manuel package.json), package.json er entrypoint node/express server
+        https://www.npmjs.com/package/express
+        hvad er express, ctrl + express se bagom kode, hvad importeres, hvorfor instantiere, se også side hvor man downloader express, siger express er minimal framework
+        consolelog app og express, er de objekter? funktioner?
+        "//app er server instans"
+        importere med commonJS module require, function chaining, 
+        app.use(express.json())
+        //gør at ser den json så parser det den selv ved POST. Den parser så selv body
+        //den kunne ikke poste i postman før dette, men nu kan den
+        //hvis man ikke har denne linje så mangler den body parser og hvad den får in er undefined
+        //.send() i en get laver selv json og js om hver vej, men ved POST skal man 
+        //bruge body parser
+        express server opsætning i app.js
+            port, port 8080 er http development server, 9090 https, eksempel: app.listen(8080) simpel og udvidet
+            anatomy of get request, hvorfor rest api, hvorfor sende json. SKAL være (req, res) rækkefølge, står for request/response
+            anatomy of json i tilbagesvar, {data: } bruges ofte. json vs js objekt i tilbagesvar ({data:}) vs (js) eller ('string')
+            kør node, skal genstartes ved hver ændring (før nodemon)
+            //res.send køre under the hood res.end(). Kalder man res.end() manuelt afsluttes connection
+            tager query parametre ind både i endpoint (url, /:id) og gennem reg.params.id. både en og flere path variabler /:id/:otherValue
+            post endpoint eksempel
+            app.get, app.post osv er routes/route handlers, route handler for en get request
+            req.params path variable, 
+            req.query, tager query string key value pairs, ingen /: i url ved query parameter
+            req.body tager json body fra post request så den kan returneres, tager kun json
+            to første er kun for get, sidste, body, er for post. de er alle properties på req objektet
+02._Server_Mountains
+    api_design.txt
+        rækkefølge af http metoder og hvornår id i url
+        app.js
+            mountain api, tag hans kode som eksempel på routes
+            alt fra url er string, konverter Number(req.params.id)
+            //ny array assignes til gamle arrays navn, gammel array er ny inaccessible - garbage collectes
+            udvidet port listen version
+02a._Endnu_server
+    json sendes tilbage med generisk key data
+    man bruger sjældent dto i node, bruges dog ved password der skal fjernes, sensitiv info
+    konverterer js til json:   body parser importeret gør modsat, json til js
+    //i json ville name fx skulle være "name", men det gør send selv. Det er express som sørger for det
+    ved send/get konverteres js og json begge veje 
+    sendte man js objekt tilbage ved get ville det ikke være rest, andre sprog ville ikke kunne parse det
+    men alle kender json, derfor smart. generelt: data er key og hvad man får ud er value
+    //han siger hvis man kaldte data mountains: mountains passer det ikke til én mountain og
+    //man skal huske om man kaldte det mountain: eller mountains og det er besværligt, så derfor
+    //brug generisk ord som data
+    tag status koder med i kodeeksempler!  {error: "The mountain id must be a number"}), den sender OK som default
+    //bad request statuskode er langt mere seriøs [end 404]
+    //Number() gør det samme som parssInt()
+    //predicate er en arrow function callback den tager imod
+    //arrow functions i airbnb styleguide, (parameter) => parameteren er altid i ()
+    spread operator
+    //json: det key value pair der er sidst er det gældende, hvis key heder det samme, VIGTIGT
+    //med spread får man et nyt objekt, nyt objekt i memroy
+    spread eksempel i mountain patch, spreader nye og gamle objekt, sætter nye til sidst så det overskrider
+    //hvad man sender tilbage som response til delete er der ingen standard for
+    in memory er splice langt mere effektivt end loop
+    find og findIndex, hvorfor bruge findIndex over find
+    //falsy: false, 0, undefined, NaN, null, ""
+03.First_HTML_Server
+    public
+        dinosaurFactory.js
+            måder at exporte funktioner, export foran funktioner samt export og export default objekt til sidst. objektet har key value pairs, key er bare automatisk value funktion's navn
+            pointe med dinosaurFactory er at den indeholder array, en getter til array'en og en funktion som tager objet ind og lægger det i array'et
+            en factory encapsulere object creation, skaber objekter
+        dinosaurs.js
+            hvordan importere vi i frontend? imports er pointe med dinosaur-filer
+            module.export og require er commonJS standard og er kun for node dvs backend, ikke browsers/frontend og andet js. ECMAScript med export/import er javascript sprog standard, derfor er det smartere at bruge dette.
+            importer i frontend ved at have flere js filer i html - problem circular dependency, uoverskuelig og memory inefficient da den læses når html læses, globalt scope uden type="module", dvs brug ES import type="module" i stedet
+            ES import, specific funktion og alt fra fil
+            getDinoInfo fkt: getter fra dinofactory importeres så vi kan gette array og consollogge og console.table den
+            console.table()  udskriver array pænt i konsol
+            den funktion kaldes nedenunder, så funktionen kaldes automatisk når scriptet køres i html
+        secondPage.html
+            det er her, dinosaurs.js bruges
+            gør intet andet end at køre scriptet så dinosaurs udskrives i terminalen
+            har <script type="module" for at sige til browseren at det er et ES modul, har isoleret scope
+            hvis ikke der var type="module" ville scriptet være et normalt script, det ville skulle bruge commonJS syntaks hvis den importere/exportere noget til andre filer og det ville køres i globalt scope og kan ses fra og deler variabler og funktioner med eventuelle andre scripts
+        app.js
+            i doorman: res.redirect !!! return res.redirect("/welcomeMessage");
+            bruger stadig require express
+            importerer const { getWelcomeMessage } = require("./util/welcomeMessageUtil.js");
+            //fil, ikke pakke, derfor path
+            //med require kan man undgå .js til sidst, vscode autocompleter med js, antager det er js
+            //hvis det ikke er js vil den lede efter json. Men skriv stadig hele navnet anbefaler anders
+            //i node er alle filer betragtet som moduler. Så der er pakker og alle filer er moduler
+            //importer kun det der skal bruges, er memory efficient
+            app.use(express.static("public"))
+            //serve css og js filer i home
+            //sikkerhedsfeature, de har adgang til html filen hvor de kunne ændre link til js og få adgang til alt muligt. 
+            //vi server html med de her app routes nedenunder, og skal manuelt sige at public-mappen skal kunne ses også
+            Anders bruger ikke index.html fil, den har bestemt mening i browsere og express, overskriver hvad man server på app.get("/"...)
+            app.get er en route som server html filer i det her tilfælde specifikt, bruger sendFile
+            sendFile skal have absolute path, derfor bruger res.sendFile(__dirname + "/public/home.html"), men det er specfikt for commonJS
+            //route: funktion som implementerer en af http metoderne
+            //endppint er ikke case sesitive
+            welcomeMessage, query-string eksempel
+            husk ved query string er endpoint uden nogen variabler, er bare welcomeMessage selvom man inputter welcomeMessage?user=V i url
+            brug altid return ved res.send - //cannot set headers after they are sent to the client, uden return stopper routen/funktionen ikke og går videre, brug altid return, konsistent, se kommentarene dér for uddybende
+            client-server model, server giver én response per request
+            proxyserver route, response.text giver ikke æøå, arrayBuffer får rå bits og decoder så til iso-8859-1 som får æøå, se spmAnders.txt
+            udvidet port app.listen
+            module.exports = app, app exporteres pga vercel deployment
+        util
+            welcomeMessage.json
+                json objekt med to properties, et med welcomeMessage til stranger og en til $clientName
+            welcomeMessageUtil.js
+                commonJS tager welcomeMessage.json ind
+                getWelcomeMessage() returnerer json welcomeMessage, kaldes fra app.js i get route som returnere welcomeMessage
+                json med navn bruger replace og replacer $clientName med query parameters clientName
+                //principle of least privileged, fault tolerance, fail-safe default - sidste er navnet på det
+                module.exports gøres så at funktioner kan imporeres i app.js så den kan bruge getWelcomeMessage, commonJS syntax
+                med module.exports laver man objekt hvor key are navnet på funktionen som default (usynlig), man kan exportere alt muligt, fx her med name: "sebastian
+                den gav jo fejl i welcomeMessage, var fordi module.exports= manglede slut-s. Efter det blev added skiftede den farve til mere grøn, før var den blå. Ting er blå i vscode når det er ens egne navne, og andre farver ellers, husk det ved debugging
+                pointe med det her var at vise commonJS syntax import/export. app.js importere welcomeMessageUtil som importere welcomeMessageJson
+        home.css
+            bare normal css
+        home.html
+            !, !! og !!! for html template/boilerplate
+            css typer, inline, block, fil, fil > inline > blok. hvordan linkes til css fil
+            hav ./ i <script src="./home.js"> af pædagoiske årsager, godt at være tydelig med paths
+            redirects i client-side:
+            måde at redirecte til ny side, normal link <a href, js dynamisk window.location, window.location.href eller replace, og meta i html. replace replaces the current page in the browser's history with the new URL, bruger kan ikke gå tilbage med browserens back button, tilføjer ikke url til browserstack
+            window.location, window er optional, location eksisterer uden for window objekt også fordi det er så ofte brugt, men skriv window så man ved at vi har fat i window objektet, pædagoisk
+            //forskel på js og node, consolog window crasher i node, node gør dette fordi
+            vis anders' flotte kode: setTimeout(() => window.location.href = "/secondPage", 3000);
+            forskel på browser og node console, console.log i inline script i html eller js-fil i public mappe logger til browser console, console.log i app.js logger til terminalen
+            vercel skal have scripts og css inline fordi det er serverless, kan ikke se andre filer åbenbart
+            async/await: anders bruger det ikke, er næsten et helt sekund langsommere end at bruge .then, samt med async/await SKAL vi bruge funktioner og det gider vi ikke
+            eksempel på fetch, fetcher noget fra vores backend
+            alt i inline scripts kan copy/pastes til browser console, det gør det samme som i inline script, copy/paste fetch i browser, ligesom hvor anders viste hvad der sker ved hver .then
+            første skridt i fetch returnerer promise, næste returnerer response objekt som konverteres til json eller text eller hvad det nu er, næste er konvertering og returnerer det data man rent faktisk vil have
+            vis hver skridt, copy/paste udkommenteret welcomeMessage fetch i browser, den consollogger hvert skridt
+            ting kan dynamisk ændres fra console i browser, fx document.getElementById("welcomeMessage").innerText="V" ændre <h3 id="welcomeMessage">
+            i fetch har sidste funktion adgang til returnerede response fordi det er en closure, og pga arrow er den enes return den andens parameter
+            //nu bruger vi elementById fordi den traverser ét tre, mens query selector traverser 4 træer
+            i første .then i fetch får vi response objekt, kan ses i browser console, 
+            //reposnse vi får: bytestream, sker måske over flere packets, readable stream er js bytestream
+            skal nok forstås som at vi får bytestream men det er ikke det der outputtes, vi får et samlet response objekt med alt det skal indeholde
+        home.js
+            alt som var udkommenteret i script i home.html står her i home.js
+            og koden virker rent faktisk,  copy paste fetch i browser fx
+03a._Time_Date_Server
+    bare egen projekt, behøves ikke uddybes
+    vercel.json
+        deploy på vercel guide:
+        https://shadowsmith.com/thoughts/how-to-deploy-an-express-api-to-vercel
+        rækkefølge:
+            module.exports = app;
+            lav vercel.json
+            copy paste json, ændre filnavne til app.js frem for index.js
+        husk caching i chrome!! forhindre en i at se nyeste commit
+ 04._Date
+    app.js
+        Date() er locale specific men har få metoder på sige
+        new Date() er GMT 0, UTC 0 timezone er 0 men har mange metoder så man kan konverterer
+        Date.now() er unix timestamp, sekunder siden 1970 1. jan
+        toString, default bruger brugerens operativsystemssettings eller browsersettings, long betyder january frem for jan. toLocaleDateString tager options for formattering
+        const curentMonthName = new Date().toLocaleDateString('default', {month: 'long'}), options er et objekt i toLocaleDateString
+        fra mars api: specificere en-GB og replacer / med -
+        const apodDate = new Date(result.date)
+        apodDateLocal = apodDate.toLocaleDateString('en-GB').toString().replaceAll("/", "-")
+05._Pokemon
+    app.js
+        express blev her gjort på en anden måde hvor man skulle udfylde de terminal spm til hvis man postede på npm
+        importere express med ESM
+          "type": "module", blev skrevet før main i package.json, hvorfor? for at kunne bruge ES modul standard
+        fordele ved ESM, nyere, ens i front og backend så kan genbruge filer fx brugervalidering, som skal tjekkes både i front og backend da fronend kan omgås
+        import path from "path", gøres fordi __dirname var specific for commonJS
+        import { randomIntFromInterval } from "./util/randomUtil.js" //husk skriv .js
+        i node kan man bruge to slags imports: commonJS og ESM
 

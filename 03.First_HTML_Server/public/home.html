@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <!--<meta http-equiv="refresh" content="3;/secondPage" /> måde at redirecte i html, bruges aldrig-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First HTML server</title>
@@ -23,20 +24,20 @@
     <a href="/secondPage">Second page</a>
 
 
-    <script src="home.js">
-
+    <script src="./home.js"></script>
+    <script>
         //assignment redirect to second page after 3 seconds
-        //man skal kunne lave en timeout hurtigti, det spørger han helt sikert om til eksamen
-        //de her rediction skal ske automatisk efter 3 sekunder, ingen bruger click
+        //man skal kunne lave en timeout hurtigt, det spørger han helt sikert om til eksamen
+        //de her redirection skal ske automatisk efter 3 sekunder, ingen bruger click
         function changePage() {
             setTimeout(() => {
                window.location = "/secondPage"; 
             }, 1000)
             setTimeout(() => {
-                window.location.href="/secondPage" //dette tilføjer ikke til browserstack
+                window.location.href="/secondPage" //replace tilføjer ikke til browserstack, href gør, så man kan gå tilbage i browseren
                 window.location.replace("/secondPage") //under the hood gøres det samme som ovenståene
                 console.log(window)
-            }, 3000) //window.locatiom, får location objekt, at have window objekt med er optional
+            }, 3000) //window.location, får location objekt, at have window objekt med er optional
             //location ligger ude for window fordi det bruges så meget
             //forskel på js og node, consolog window crasher i node, node gør dette fordi
             //personen gør noget helt forkert ved at consollloge det
@@ -49,6 +50,10 @@
             //meta tag html
             //client side redirection
             //server side redirection kan ikke bruges i clienten
+
+            //Anders' kode:
+            // setTimeout(() => window.location.href = "/secondPage", 3000);
+            // setTimeout(() => window.location.replace("/secondPage"), 3000);
         }
         /*
             //inline scripting
@@ -69,7 +74,7 @@
             //køre en enkelt gang, samt async await er langt langt langsommere, næsten helt sekund
             const url = "http://localhost:8080/welcomeMessage" //hele url bruges åbenbart ikke
     
-            fetch(url).then((response) => {  //generel fetch
+            fetch("/welcomeMessage").then((response) => {  //generel fetch
                 console.log(response);
                 response.json().then((data) => {
                 console.log(data);
@@ -96,6 +101,7 @@
             //se i objektet, står bytestream, det er ikke json, men vi vil konvertere det til json
             //konvertere til json: fetch("/welcomemessage").then(response => response.json())
             //får også promise fordi det tager tid at konvertere til json
+            //^ det er vel ikke sandt, der skal vel stå at vi bruger igen then fordi json tager tid at konverteres
             */
     </script>
 </body>

@@ -17,13 +17,13 @@ import { randomIntFromInterval } from "./util/randomUtil.js" //husk skriv .js
 //nu skal vi ikke bruge require fra nu af men import og export da det er nyere
 //fordel ved at import og export er ens i front og backend er at man kan bruge samme filer
 //i front og backend fx til validation, fx brugernavn/password, tester input fx alder, genbruger
-//kode i front og backend, smart så man ikke skla ændre det flere steder 
-//hvorfor teste fx alder både i front og backend, fordi frontend kan undgås
+//kode i front og backend, smart så man ikke skal ændre det flere steder 
+//hvorfor teste fx alder både i front og backend, fordi frontend kan omgås
 
 //vores root er vores package.json
 
 //tre måder at importere vi gør ES module, "type": "module" nu før main i package.json
-
+//nej, type:module skal gøres for at man kan bruge ES modul standard
 
 
 console.log(path.resolve("./")) //er relativ path, dog path resolve finder absolut path

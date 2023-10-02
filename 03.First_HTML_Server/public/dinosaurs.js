@@ -1,4 +1,4 @@
-//modules.export er kun en node ting, her er i i frontend så det kender ikke til node
+//module.exports er kun en node ting, her er i i frontend så det kender ikke til node
 //hvordan importere vi i frontend
 //første løsning: importere bare begge js filer i html filen ligesom vi gjorde i sidste semestre
 //dårlig løsning for det er uoverskueligt ved flere js filer og rækkefølge betyder noget
@@ -9,12 +9,11 @@
 //import dinosaurFactory from "./dinasaursFactory.js"  tager hele export
 import { getExtinctDinosaurs } from "./dinosaurFactory.js"
 
-function getDinoInfo(){
-    const extinctDinosaurs = getExtinctDinosaurs()
-    console.log(extinctDinosaurs)
-    console.log(`There are ${extinctDinosaurs.length} extinct dinosaurs`)
-    console.table(extinctDinosaurs)  //table viser array i pænt format, kunne også bare loope pg printe
 
+function getDinoInfo() {
+    const extinctDinosaurs = getExtinctDinosaurs()
+    console.log(`There are ${extinctDinosaurs.length} extinct dinosaurs`)
+    console.table(extinctDinosaurs) //table viser array i pænt format, kunne også bare loope pg printe
 }
 
 getDinoInfo()

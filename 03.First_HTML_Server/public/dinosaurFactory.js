@@ -1,11 +1,11 @@
 const extinctDinosaurs = ["velo", "tricera", "t-rex"]
 
-export function getExtinctDinosaurs(){
+export function getExtinctDinosaurs() {
     return extinctDinosaurs
 }
 
 
-export function addDinosaurs(extinctDinosaur){
+export function addExtinctDinosaur(extinctDinosaur) {
     extinctDinosaurs.push(extinctDinosaur)
 }
 
@@ -15,3 +15,14 @@ export function addDinosaurs(extinctDinosaur){
     getExtinctDinosaurs,
     addDinosaurs
 }*/
+
+//taget fra Anders' kode:
+// export default {
+//     getExtinctDinosaurs,
+//     addExtinctDinosaur
+// };
+
+// export {
+//     getExtinctDinosaurs,
+//     addExtinctDinosaur
+// };

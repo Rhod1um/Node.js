@@ -4,3 +4,24 @@ forklar
 //Number, String, Boolean, BigInteger, undefined, null, Object, Symbol
 //Object: Object, Array, Date
 //Funktion er en datakonstrukt ifølge anders
+
+proxy server i app.js i First_HTML_Server
+    hvorfor decode i iso-8859-1? normalt sendes utf-8 encoded content tilbage fra google
+    og andre servere da det har alle symboler i verden mens iso-8859-1 er for europæiske sprog kun
+    så ved response.txt bør det utf-8 decodes som default men her ser vi ingen æøå, vi skal
+    bruge arrayBuffer of TextDecoder for at få iso-8859-1 decoded og få æøå
+
+home.html under First_HTML_Server
+    //reposnse vi får: bytestream, sker måske over flere packets, readable stream er js bytestream
+    chatGPT siger vi ikke får bytestream, og hvor ser man content-type, bytestream, readable stream
+    osv på response objektet i browseren
+    skal nok forstås som at fetch får bytestream ind men det er reponse objekt vi outputter i første then
+
+
+links på egen side, med hvad jeg har brugt:
+mdn
+https://shadowsmith.com/thoughts/how-to-deploy-an-express-api-to-vercel
+little book of rest
+express: https://www.npmjs.com/package/express
+chatGPT
+
