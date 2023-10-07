@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <!--water css^ minimal styling, importer til eksamen og projekter-->
+    <link rel="stylesheet" href="assets/css/main.css">
+    $CSS_LINKS <!--server side rendering injecor css links-->
+    <!--generel css i assets mappe, samt hver side har sin egen css i deres egen mappe-->
+    <title>$TAB_TITLE</title>
+</head>
+<!--hav al css og html og js til mandatory i denne uge, hav klar til næste gang-->
+
+<body>
+    <nav>
+        <ol>
+            <a href="/"><img id="logo" src="assets/images/logo.png"></a>
+            <a href="/battle">Battle</a>
+            <a href="/contact">Contact</a>
+        </ol>
+    </nav>
+    
+    <main>
+        <!--inspiration fra anders, kan hente første pokemon her frem for injections
+        så er den server rendered
+    så i stedet for filePath i temPlat enginge
+export function readPage(filePath){
+    return fs.readFileSync(filePath).toString()
+}
+så ville man sætte siden op dér
+
+serverside fordele: hurtigere load, 
+hvorfor vil virksomgeer gå efter serverside? SEO, webcrawlere
+webcralere ser mange tomme sider som brugeren ser
+for seo, webcrawlere skal se det hele med te samme
+hydration: først serverside så cleint side rendering
+webcrawlere vil fx ikke se clientside js filer
+webcrawler vil kun se html
+simple html sider hvor ting ikke sendes ud med js er ok men som vi gjorde før hvor navbar og footer blev sendt ud
+med js ville ikke ses af webcrawlere da de ikke kan se js, ser der ville navbar og footer være ingenting
+virksomheder vil sende ting ud med js og derfor skal de bruge serverside da de ellers ikke ses af webcrawlere
+
+serverside rendering er kun tungt når den starter op, det er her siderne sættes sammen, og det er det
+så serverside er ikke tungt, det er memory efficient
+
+kan vise ting instantly 
+
+tre fordele ved serverside:
+seo, hurtig visning, memory efficient for browsere
+
+
+-->
+    <script>
+        $DATA
+    </script>

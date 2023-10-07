@@ -5,7 +5,12 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ls": "ls",
+    "make:test-folder": "mkdir test",
+    "testfile": "node ./test/test.js",
+    "start:dev": "cross-env PORT=8080 nodemon app.js",
+    "start:prod": "cross-env PORT=80 node app.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +31,7 @@
   },
   "homepage": "https://github.com/Rhod1um/Node.js#readme",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "express": "^4.18.2"
   }
 }

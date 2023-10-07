@@ -184,6 +184,11 @@
             proxyserver route, response.text giver ikke æøå, arrayBuffer får rå bits og decoder så til iso-8859-1 som får æøå, se spmAnders.txt
             udvidet port app.listen
             module.exports = app, app exporteres pga vercel deployment
+
+            server-side vs client-side redirection:
+            server-side er som med doorman funktion, redirecter til welcome-message funktion
+            så doorman er client for welcomeMessage. res.redirect bruges til at kalde anden route
+            client-side redirection: at gå fra en html side til en anden, setter url
         util
             welcomeMessage.json
                 json objekt med to properties, et med welcomeMessage til stranger og en til $clientName
@@ -244,12 +249,73 @@
         const apodDate = new Date(result.date)
         apodDateLocal = apodDate.toLocaleDateString('en-GB').toString().replaceAll("/", "-")
 05._Pokemon
+    Lav ny mappe, så lav main js fil, her app.js. Så npm init. app.js laves først så at npm init
+    sætter denne som default for entry point i spm prompts. 
+    en package.json blev lavet med kommandoen npm init. npm - node package manager. npm init 
+    kan bruges i hvilken som helst js projekt, også react osv. specificere dependencies, bash kommandoer osv
+    med npm init promptes man forskellige spm og så er package.json lavet. Kun denne er så i projektet
+    bagefter installeres express med npm i express. så kommer node_modules pg package-lock.json
+    npm init spm, ved noget i () er det default værdi og tryk bare enter: 
+    package name, version vælg 0.0.1, description, entry point, test (? ved enter uden at skrive noget siger bash kommando udskriver no test specified), git repository, keywords, author, license, 
+    disse ting postes på npm hvis man poster det så brug ikke rigtig navn hvis man ikke vil have det
+    nu har den package.json med disse info og så installerer vi express: npm i express
+    det giver node_modules og package-lock.json og dependencies key og value i package.json
+    "^4.18.2" hat^ betyder at den tager den nyeste version
     app.js
-        express blev her gjort på en anden måde hvor man skulle udfylde de terminal spm til hvis man postede på npm
         importere express med ESM
-          "type": "module", blev skrevet før main i package.json, hvorfor? for at kunne bruge ES modul standard
+        "type": "module", blev skrevet før main i package.json, hvorfor? for at kunne bruge ES modul standard
+        skrives blandt meta-data som navn, version, description
         fordele ved ESM, nyere, ens i front og backend så kan genbruge filer fx brugervalidering, som skal tjekkes både i front og backend da fronend kan omgås
         import path from "path", gøres fordi __dirname var specific for commonJS
         import { randomIntFromInterval } from "./util/randomUtil.js" //husk skriv .js
         i node kan man bruge to slags imports: commonJS og ESM
+        
+        public-mappe struktur, frontend struktur
+            assets - images (for alle sider), css, js som ikke er specifik for bestemt side
+            components - hvis man har navbar, footer osv i forskellige filer så hav dem i components. Components ala som i react
+            hav både html, css og js som er specifik for den enkelte komponent der
+            pages - hver html side har sin egen undermappe under pages, og de indeholder html, css og js
+            som er specifik for den side. hvis siderne er delt op i komponenter er det main element som er her
+            hvis man ikke har delt sider i komponenter er hele html-siden under pages og der er ingen components mappe
 
+            struktur på server: util mappe har uddelegerede funktioner som app.js bruger, preparePages,
+            randomUtil.js og templateEngine.js
+
+        scripts i node
+            i package.json hav key "scripts" og value er et objekt med properties hvor key er
+            navn på en kommando og value er kommandoen i bash som kører ved det kald.
+            Kør kommando med npm run [scriptnavn/key i "scripts"]
+            fx "start:dev": "cross-env PORT=8080 nodemon app.js",
+            kør/invoke med npm run start:dev 
+            naming convention: både : og - kan bruges, fx start-dev. 
+            De kommandoer er det samme som hvis man skrev dem i terminalen. også for lav mappe, lav fil osv
+            Vi laver en start:dev og start:prod så at hvis vi skulle sende det til produktion
+            så skulle start-kommandoen ændres til at være node frem for nodemon, og det ville Man
+            manuelt skulle ændre og tilbage til nodemon efter man har pushet til produktion
+            derfor har vi nu for både node og nodemon. Det er normalt at gøre det sådan med dev vs prod
+            start:dev script er en wrapper, dvs det tager argument og gør noget med node - nodemon
+            er også en wrapper
+        
+        env var i node (er program-specifik her)
+            console.log(process) - process er meta info om node 
+            ved console.log(process.env) vises både OS og programspecifikke miljøvariabler såsom PORT
+            ved console.log(process.env.PORT) kan man se en specifik miljøvariabel såsom PORT
+            Sæt miljøvariabel i program i node:[navn/key]=[værdi], fx PORT=3000
+            Sæt den i samme linje som man kører programmet: PORT=3000 node app.js
+            derfor laves script/bash kommando i package.json som køre programmet på en bestemt port:
+            start:dev": "cross-env PORT=8080 nodemon app.js
+            cross-env er til for at folk på windows også kan bruge de kommandoer. Helt samme
+            kommando men uden cross-env kan kun køres på mac og linux. Cross-env er en npm package
+            som installeres med npm i cross-env og som gør at folk på windows som kloner vores
+            program også kan køre det. 
+
+        nodemon --exit
+            nodemon ser kun ændringer i filer med extensions .js, .mjs, .json og restarter på dette
+            vi vil have den også restarter ved ændringer i andre filer såsom html
+            kan gøres i terminalen med nodemn --ext html,js,json og
+            kan gøres med samme kommando i et script i package.json. Det vi gjorde her er:
+            lav nodemon.json fil i roden. Lav json objekt med kun "ext": "html,js,json" i
+            Men hvordan køres den nodemon.json fil?
+        
+        SSR
+            
