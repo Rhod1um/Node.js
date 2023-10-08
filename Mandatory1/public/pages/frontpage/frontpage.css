@@ -1,0 +1,8 @@
+body {
+    min-height: 95vh;  /**/
+    display: flex;
+    flex-direction: column;
+}
+h1, #headline {
+    color: red;
+} /*water.css tillader ikke det overrides. background-color kan sættes men ikke skriftcolor*/

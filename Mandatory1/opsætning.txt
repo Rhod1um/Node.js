@@ -277,6 +277,7 @@
             pages - hver html side har sin egen undermappe under pages, og de indeholder html, css og js
             som er specifik for den side. hvis siderne er delt op i komponenter er det main element som er her
             hvis man ikke har delt sider i komponenter er hele html-siden under pages og der er ingen components mappe
+            der er noter i html komponenterne
 
             struktur på server: util mappe har uddelegerede funktioner som app.js bruger, preparePages,
             randomUtil.js og templateEngine.js
@@ -315,7 +316,31 @@
             kan gøres i terminalen med nodemn --ext html,js,json og
             kan gøres med samme kommando i et script i package.json. Det vi gjorde her er:
             lav nodemon.json fil i roden. Lav json objekt med kun "ext": "html,js,json" i
-            Men hvordan køres den nodemon.json fil?
+            Men hvordan køres den nodemon.json fil? ChatGPT siger at nodemon leder efter
+            config filerne i rækkefølgen .nodemonrc, then .nodemonrc.json, and finally nodemon.json i 
+            current working directory og kører dem selv. 
+            alternativt kan man selv køre config filer med --config: nodemon --config nodemon.json
         
         SSR
-            
+            importerer: app.js <- preparePages <- templateEngine
+            preparePages kunne være i app, vi lægger det bare i anden fil in case man ikke vil have meget kode i app
+
+            </main> med i footer og <main> med i navbar, ingen af dem med i main content
+            så når man laver footer component tages alt fra </main> og ned, dog kopier <script>
+            hen i main content componenten, navbar og hvad ellers og behold footer script hvis den har et
+            for navbar/header tag alt fra <main> og op og også omdeleger scripts hvis den bruger det
+
+            se fordele og ulemper ved SSR i app.js
+
+    util
+        preparePages.js og templateEngine.js
+            alt i denne kunne også være i app.json
+            preparePages er bare et mellemled, det sender filepath til templateEngine som så laver
+            html-filen til en string og sender den tilbage. Så sender preparePages den string
+            til næste funktion som er renderPage, som tager string a main content html og tabTitle of cssLinks,
+            tager navbar og footer ind og gør dem til string og sætter dem alle sammenlign
+        randomUtil.js 
+            har intet andet end en random funktion som bruges til at vælge random pokemon på forsiden og battle(?)
+    
+
+

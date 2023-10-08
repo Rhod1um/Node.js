@@ -51,3 +51,4 @@ fetch forklaret i detaljer
 dato-formater
 
 vis at man fetcher fra api, fx pokeapi eler mars? både vis kode og selve det der fetches?
+

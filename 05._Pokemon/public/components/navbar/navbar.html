@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <!--water css^ minimal styling, importer til eksamen og projekter-->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css"> <!--var først relativ path assets/.., skal være absolut med /assets, er absolut set fra public mappe-->
     $CSS_LINKS <!--server side rendering injecor css links-->
     <!--generel css i assets mappe, samt hver side har sin egen css i deres egen mappe-->
     <title>$TAB_TITLE</title>
@@ -16,7 +16,7 @@
 <body>
     <nav>
         <ol>
-            <a href="/"><img id="logo" src="assets/images/logo.png"></a>
+            <a href="/"><img id="logo" src="/assets/images/logo.png"></a> <!--absolut path set fra public mappen-->
             <a href="/battle">Battle</a>
             <a href="/contact">Contact</a>
         </ol>
@@ -25,7 +25,7 @@
     <main>
         <!--inspiration fra anders, kan hente første pokemon her frem for injections
         så er den server rendered
-    så i stedet for filePath i temPlat enginge
+    så i stedet for filePath i templatEnginge
 export function readPage(filePath){
     return fs.readFileSync(filePath).toString()
 }
@@ -52,6 +52,3 @@ seo, hurtig visning, memory efficient for browsere
 
 
 -->
-    <script>
-        $DATA
-    </script>

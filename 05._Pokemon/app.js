@@ -10,6 +10,12 @@ app.use(express.static("public"))
 //ved ikke at bruge comonJS module (require) kan vi ikke bruge __dirname
 //gøres i stedet:
 import path from "path" //bruges nu ikke længere fordi vi laver sandwich
+//hvorfor bruges den ikke længere, før blev den brugt til path.resolve(path til html fil)
+//først __dirname fordi commonJS modul og blev brugt fordi path er anderledes alt efter styresystem (backward, forward slash)
+//så brugte vi path fordi ES modul, og bruges af samme årsag
+//hvorfor bruger vi nu ikke path til paths'ne? 
+//path.resolve gav os den absolutte url, helt tilbage til user folder? Det bruger vi ikke længere
+//men hvorfor bruger vi kun relativ nu og hvorfor skulle vi bruge absolut før? 
 
 import { randomIntFromInterval } from "./util/randomUtil.js" //husk skriv .js
 
@@ -40,15 +46,17 @@ console.log(path.resolve("./")) //er relativ path, dog path resolve finder absol
 //brubar ved forskellige operativsystemer
 //../../ bruges når man kigger op i mappesystemet, mappenavn/mappenavn/... når man kigger ned
 
-//========read========
+//======== read ========
 
 import {frontpagePage, battlePage, contactPage } from "./util/preparePages.js" //hvorfor . i nogle og ikke andre
 
 //preference om man vil lægge ovenståede i separat fil frem for at have det her
+//nu ligger det i preparePages
 
+//========== HTML =========
+//er flyttet til preparePages
 
-//========HTML=========
-
+//=========== routes ===========
 
 app.get("/", (req, res) => {
     //res.sendFile(path.resolve("./public/frontpage/frontpage.html"))
@@ -58,7 +66,7 @@ app.get("/", (req, res) => {
     //når man sletter fil/mappe slettes linket, unlinker mappen og så garbage collectes det
 
     //res.send("<h1>Hello</h1>")
-    res.send(frontpagePage)  //sender fil i stedet for string, bedre men ikke det vi vil gøre
+    res.send(frontpagePage)  //sender fil i stedet for string, bedre men ikke det vi vil gøre - dette blev skrevet før ændringer i koden
     //hvis alt er en string kan vi lave en sandwich med nav, indhold og footer
     //så renderes siderne på serveren
 })
@@ -73,13 +81,12 @@ app.get("/contact", (req, res) => {
     res.send(contactPage)
 })
 
-//=========== routes =========
-
 //her ville det være godt med en pre-fetch for nu så er den sløv til at hente ny pokemon når
 //den kalder pokeapi, men hurtig til at skifte strength når man reflresher.
 //når pokemon kun har 1 strength tilbage og vil dø efter næste reload kunne man fetche
 //den nye pokemon på forhånd så der ikke er det ekstra sekund af load når den hentes
 
+//== Anders' battle game =======
 /*
 const pikachu = {
     url: "bla bla",
@@ -127,9 +134,10 @@ app.get("/battlepokemon", (req, res) => {
         res.send({ data: currentPokemon });
     }
 })
-//console.log(process.env.PORT)
+//console.log(process.env.PORT) process er meta info om node, env er env var for OS og program, PORT er specifik env var
 //const PORT = 8080
 //PORT = process.env.PORT ? Number(process.env.PORT) : 8080 //port til Number fordi anders synes det ser pænere u i terminalen, Number er gul, string er hvid. Det printes altid som string
+// ^ ternary operator for at vise at det som koncept gør det samme som nedenunder
 const PORT = Number(process.env.PORT) || 8080 //samme som ovenover konceptuelt 
 app.listen(PORT, () => console.log("Server is running on port", PORT))
 
@@ -138,3 +146,25 @@ app.listen(PORT, () => console.log("Server is running on port", PORT))
 //default setback værdien. Her, hvis process.env.PORT er truthy sættes PORT i appen til det
 //hvis den er falsy sættes PORT til default setback 8080
 //dene syntax bruges ofte i configuration settings og er åbenbart helt normal javascript
+
+/*========= SSR fordele ============
+
+serverside fordele: hurtigere load, 
+hvorfor vil virksomgeer gå efter serverside? SEO, webcrawlere
+webcralere ser mange tomme sider som brugeren ser
+for seo, webcrawlere skal se det hele med te samme
+hydration: først serverside så cleint side rendering
+webcrawlere vil fx ikke se clientside js filer
+webcrawler vil kun se html
+simple html sider hvor ting ikke sendes ud med js er ok men som vi gjorde før hvor navbar og footer blev sendt ud
+med js ville ikke ses af webcrawlere da de ikke kan se js, ser der ville navbar og footer være ingenting
+virksomheder vil sende ting ud med js og derfor skal de bruge serverside da de ellers ikke ses af webcrawlere
+
+serverside rendering er kun tungt når den starter op, det er her siderne sættes sammen, og det er det
+så serverside er ikke tungt, det er memory efficient
+
+kan vise ting instantly 
+
+tre fordele ved serverside:
+seo, hurtig visning, memory efficient for browsere
+*/

@@ -17,6 +17,7 @@ home.html under First_HTML_Server
     osv på response objektet i browseren
     skal nok forstås som at fetch får bytestream ind men det er reponse objekt vi outputter i første then
 
+Hvordan køres nodemon.json i pokemon server?
 
 links på egen side, med hvad jeg har brugt:
 mdn

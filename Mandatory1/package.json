@@ -1,6 +1,33 @@
-{  
+{
+  "name": "Mandatory1",
+  "version": "0.0.1",
+  "description": "Mandatory 1, documentation site",
   "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start:dev": "cross-env PORT=8080 nodemon app.js",
+    "start:prod": "cross-env PORT=80 node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rhod1um/Node.js.git"
+  },
+  "keywords": [
+    "mandatory 1",
+    "node.js",
+    "express",
+    "javascript",
+    "documentation",
+    "school project"
+  ],
+  "author": "Veronica Frydkjær",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rhod1um/Node.js/issues"
+  },
+  "homepage": "https://github.com/Rhod1um/Node.js#readme",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "express": "^4.18.2"
   }
 }
