@@ -134,6 +134,15 @@ app.get("/battlepokemon", (req, res) => {
         res.send({ data: currentPokemon });
     }
 })
+
+//ny route for form contact
+
+app.get("/contact", (req, res) => {
+    //res.send({send: "data"})
+    res.redirect("/frontpage") //send besked om at beskeden blev sendt fra backend så vi er sikre på den rent faktisk blev sendt
+})
+
+
 //console.log(process.env.PORT) process er meta info om node, env er env var for OS og program, PORT er specifik env var
 //const PORT = 8080
 //PORT = process.env.PORT ? Number(process.env.PORT) : 8080 //port til Number fordi anders synes det ser pænere u i terminalen, Number er gul, string er hvid. Det printes altid som string

@@ -1,2 +1,32 @@
 
-        <h1>Contact</h1>
+<h1>Contact</h1>
+
+<form action="/contact" method="POST">
+        <label>Your name</label> <!--kombiner med nodemailer. label for accesibility-->
+        <input
+                placeholder="Your name"
+        >
+        <label>Your email</label> 
+        <input
+                type="email"
+                placeholder="Your email"
+        >
+        <label>Your message</label> <!--kombiner med nodemailer. label for accesibility-->
+        <textarea
+                cols="80"
+                rows="40"
+                placeholder="Your message"
+        ></textarea>
+
+        <button>Submit</button> <!--er automatisk submit når der kun er én knap
+        at gøre inputfelt til type submit kan man så godt for accessibility her fordi det er inden i en form-->
+</form>
+
+<!--til eksamen: inputfelt skal være stort det skal gøres større til eksamen
+
+hvis det ikke gøres spørger han hvordan det kan gøres større
+
+brug derfor textarea i stedet. den er dog også lille uden styling så brug cols og rows, nemt
+
+som det er nu er den dog stylet pænt pga water.css
+-->
