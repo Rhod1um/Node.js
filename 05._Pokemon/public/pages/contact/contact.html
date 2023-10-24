@@ -4,15 +4,20 @@
 <form action="/contact" method="POST">
         <label>Your name</label> <!--kombiner med nodemailer. label for accesibility-->
         <input
+                name="name"
                 placeholder="Your name"
         >
         <label>Your email</label> 
         <input
+                name="email"
                 type="email"
                 placeholder="Your email"
-        >
+                value="some@mail.com"
+        > <!--name er key i en form, gør at det kan blive urlencoded
+        value sættes her pga developer mode-->
         <label>Your message</label> <!--kombiner med nodemailer. label for accesibility-->
         <textarea
+                name="message"
                 cols="80"
                 rows="40"
                 placeholder="Your message"

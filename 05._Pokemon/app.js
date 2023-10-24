@@ -5,6 +5,10 @@ import express from "express"
 
 const app = express()
 
+app.use(express.urlencoded({ extended: true }))
+//extended: selv med nested form data vil den stadig passe. Uden extended true vil den kun passe
+//øverste lag
+
 app.use(express.static("public"))
 
 //ved ikke at bruge comonJS module (require) kan vi ikke bruge __dirname
@@ -137,10 +141,19 @@ app.get("/battlepokemon", (req, res) => {
 
 //ny route for form contact
 
-app.get("/contact", (req, res) => {
+app.get("/contactGammel", (req, res) => {
     //res.send({send: "data"})
     res.redirect("/frontpage") //send besked om at beskeden blev sendt fra backend så vi er sikre på den rent faktisk blev sendt
 })
+
+
+//Ny kode ==============
+
+app.post("/contact", (req, res) => {
+    console.log("OK Thanks for the message", req.body);
+    res.redirect("/");
+});
+
 
 
 //console.log(process.env.PORT) process er meta info om node, env er env var for OS og program, PORT er specifik env var
