@@ -7,7 +7,7 @@ router.get("/test")
 //console.log(express)
 //i den ses Router som er anonym funktion, skal instantieres router=Router()
 
-//router er en dummy route, man sætter ikke en server op, 
+//router er en dummy route, man sætter ikke en server instans op, en rigtig route er app.get()
 
 //det her er ikke crud så endpoints hedder hvad man vælger 
 
@@ -60,3 +60,4 @@ router.get("/room", (req, res, next) => {
 
 
 export default router;
+
