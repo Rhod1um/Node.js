@@ -1,0 +1,7 @@
+driver er mellemled mellem sprog og db
+fx mellem python og postgres
+
+jdbc er mellem java og mysql
+
+her er sqlite3 driver og sqlite er db?
+driver giver åbning til db

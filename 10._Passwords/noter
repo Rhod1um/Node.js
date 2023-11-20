@@ -1,0 +1,35 @@
+npm i bcrpt
+
+lad være at leake eller sende password til frontend
+heller ikke det krypterede password
+hashing er ikke 100% sikkert
+
+ved select statement, slet password fra responsen hvis man vil lave dto
+
+bcrypt er baseret på blowfish cyphon
+rounds hvor den salter, jo flere rounds jo mere tid tager det at hashe, så tagerdet også længere
+tid at sammenligne passwords
+alt rounds - 8 er alt for lavt i dag, er 40 hashes/sekund
+14 er et fint tal
+rounds=25 tager en time at hashe password 
+algotitme er fra 1999
+godt at det tager lang tid da det så også tager lang tid
+
+hashing algoritme: one way function 
+
+rainbow table - rainbow attack
+
+bcrypt har salt, generes hver gang man hasher noget med bcrypt, får unik salt
+så man kan ikke bare slå hashen up i rainbow tables længere
+skal bruge salt for at se om hash passer
+
+der findes også pebber
+pebber er en hemmelighed som måske ligger på serveren men leakes den kan de finde ud
+af hvad hashen er. Selv hvis den leakes gør salt rounds dog at det tager tid at finde den
+NSA hvis de har supercomputere ville det dog tage dem nogle uger
+
+2b først i hashen er den nyeste algoritme, 2a er lidt ældre
+så man kan se på hashen hvilken algoritme det er
+
+bcrypt - man kan hashe og man kan compare
+
